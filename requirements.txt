@@ -1,3 +1,5 @@
 fastapi
 uvicorn[standard]
 mysql-connector-python
+python-jose==3.5.0
+passlib==1.7.4
