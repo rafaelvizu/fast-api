@@ -1,4 +1,4 @@
-from sqlalchemy import Column, BigInteger, String, VARCHAR
+from sqlalchemy import Column, BigInteger, VARCHAR
 from src.db.base import Base
 
 
