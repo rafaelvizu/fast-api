@@ -52,4 +52,3 @@ def login(user: UserLogin, db: Session = Depends(get_db)) -> Token | JSONRespons
      
      except Exception as e:
           return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"message": "Internal server error"})
-     

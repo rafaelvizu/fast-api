@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from src.api import auth
+from src.api.v1 import product
 
 app = FastAPI()
 
@@ -9,3 +10,4 @@ def read_root():
 
 
 app.include_router(auth.router)
+app.include_router(product.router)
