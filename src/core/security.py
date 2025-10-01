@@ -3,6 +3,7 @@ from jose import JWTError, jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
+from src.exceptions.http_execeptions import HTTPExceptions
 
 from core.settings import settings
 
@@ -30,11 +31,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
      )
 
 def decode_access_token(token: str = Depends(oauth2_schema)):
-     credentials_exception = HTTPException(
-          status_code=status.HTTP_401_UNAUTHORIZED,
-          detail='Could not validate credentials',
-          headers={'WWW-Authenticate': 'Bearer'},
-     )
+
      try:
           payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
           username: str = payload.get('sub')
@@ -44,4 +41,4 @@ def decode_access_token(token: str = Depends(oauth2_schema)):
           
           return payload
      except JWTError:
-          raise credentials_exception
+          raise HTTPExceptions.unauthorized()
