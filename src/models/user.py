@@ -8,5 +8,5 @@ class User(Base):
      id = Column(BigInteger, primary_key=True, index=True)
      email = Column(String, unique=True, index=True, nullable=False)
      hashed_password = Column(String, nullable=False)
-     full_name = Column(String, nullable=True)
+     full_name = Column(String, nullable=False)
      is_active = Column(String, default=True)
