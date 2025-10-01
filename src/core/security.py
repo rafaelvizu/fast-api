@@ -5,7 +5,7 @@ from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 from src.exceptions.http_execeptions import HTTPExceptions
 
-from core.settings import settings
+from src.core.settings import settings
 
 
 oauth2_schema = OAuth2PasswordBearer(tokenUrl='/api/auth/login')

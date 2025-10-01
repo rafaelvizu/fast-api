@@ -13,11 +13,11 @@ class Settings(BaseSettings):
      MYSQL_USER: str
      MYSQL_PASSWORD: str
      MYSQL_HOST: str
-     MYSQL_PORT: int = 3306
+     MYSQL_PORT: str = 3306
 
 
      class Config:
-          env_file = '.env'
+          pass
 
 
 settings = Settings()
