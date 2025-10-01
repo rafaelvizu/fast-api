@@ -3,6 +3,7 @@ from src.models.user import User
 from src.core.security import verify_password, get_password_hash, create_access_token
 from src.exceptions.user import UserAlreadyExistsException, UserNotFoundException, InvalidCredentialsException
 from src.schemas.user import UserCreate, UserLogin, UserRead
+from fastapi.responses import JSONResponse
 
 def authenticate_user(db: Session, user: UserLogin) -> User:
      db_user = db.query(User).filter(User.email == user.email).first()
@@ -14,7 +15,7 @@ def authenticate_user(db: Session, user: UserLogin) -> User:
 
      return db_user
 
-def register_user(db: Session, user: UserCreate) -> UserRead:
+def register_user(db: Session, user: UserCreate) -> User:
      # verificar se o usuário já existe
      existing_user = db.query(User).filter(User.email == user.email).first()
      if existing_user:
@@ -30,9 +31,10 @@ def register_user(db: Session, user: UserCreate) -> UserRead:
      db.commit()
      db.refresh(user)
 
-     return UserRead.from_orm(user)
+     return user
 
 def login_user(db: Session, user: UserLogin) -> str:
      user = authenticate_user(db, user)
      token = create_access_token(data={"sub": str(user.id)})
+
      return token
