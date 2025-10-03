@@ -1,5 +1,6 @@
 from sqlalchemy import Column, BigInteger, VARCHAR
 from src.db.base import Base
+from sqlalchemy.orm import relationship
 
 
 class User(Base):
@@ -10,4 +11,6 @@ class User(Base):
      hashed_password = Column(VARCHAR(100), nullable=False)
      full_name = Column(VARCHAR(100), nullable=False)
      is_active = Column(VARCHAR(100), default=True)
+
+     products = relationship("Product", back_populates="user", cascade="all, delete-orphan")
 
