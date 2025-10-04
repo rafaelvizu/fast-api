@@ -48,8 +48,8 @@ router = APIRouter(
      name="Get Products",
      response_model=ProductList,
 )
-def get_all(db: Session = Depends(get_db), pagination_request: PaginationRequest = Depends()) -> ProductList:
-     pagination_res, products = get_all_products(db, pagination_request.page, pagination_request.size)
+def get_all(db: Session = Depends(get_db), pagination_request: PaginationRequest = Depends(), user: User = Depends(get_current_user)) -> ProductList:
+     pagination_res, products = get_all_products(db, user.id, pagination_request.page, pagination_request.size)
 
      return ProductList(products=products, pagination=pagination_res)
 
@@ -60,9 +60,9 @@ def get_all(db: Session = Depends(get_db), pagination_request: PaginationRequest
      name="Get Product by ID",
 )
 
-def get_by_id(product_id: int, db: Session = Depends(get_db)) -> ProductRead:
+def get_by_id(product_id: int, db: Session = Depends(get_db), user: User = Depends(get_current_user)) -> ProductRead:
      try:
-          product = get_product(db, product_id)
+          product = get_product(db, product_id, user.id)
           return product
      except ProductNotFoundException as e:
           return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={"message": str(e)})
