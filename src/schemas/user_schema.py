@@ -1,26 +1,28 @@
-from pydantic import BaseModel, EmailStr, Field, constr
+from pydantic import (
+     BaseModel as _BaseModel, EmailStr as _EmailStr, Field as _Field, constr as _constr
+)
 
-class UserBase(BaseModel):
-     email: EmailStr
-     full_name: constr(min_length=1, max_length=100, strip_whitespace=True)
+class _UserBase(_BaseModel):
+     email: _EmailStr
+     full_name: _constr(min_length=1, max_length=100, strip_whitespace=True)
 
 
-class UserCreate(UserBase):
-     password: constr(min_length=6)
+class UserCreate(_UserBase):
+     password: _constr(min_length=6)
 
-class UserLogin(BaseModel):
-     email: EmailStr
-     password: constr(min_length=6)
+class UserLogin(_BaseModel):
+     email: _EmailStr
+     password: _constr(min_length=6)
 
-class UserRead(UserBase):
+class UserRead(_UserBase):
      id: int
-     is_active: bool = Field(default=True)
+     is_active: bool = _Field(default=True)
 
      class Config:
           from_attributes = True
 
 
-class Token(BaseModel):
+class Token(_BaseModel):
      access_token: str
      token_type: str
      expires_in: float | None = None
