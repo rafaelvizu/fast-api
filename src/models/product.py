@@ -14,7 +14,7 @@ class Product(Base):
      )
 
      name = Column(VARCHAR(100), nullable=False)
-     description = TEXT(length=500)
+     description = Column(TEXT, nullable=True)
      price = Column(DECIMAL(10, 2), nullable=False)
 
      __table_args__ = (
