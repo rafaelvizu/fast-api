@@ -1,7 +1,7 @@
 from pydantic_settings import BaseSettings
 
 
-class Settings(BaseSettings):
+class _Settings(BaseSettings):
      
      # auth
      SECRET_KEY: str
@@ -20,4 +20,4 @@ class Settings(BaseSettings):
           pass
 
 
-settings = Settings()
+settings = _Settings()
