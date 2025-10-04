@@ -1,24 +1,24 @@
-class BaseAppException(Exception):
+class _BaseAppException(Exception):
     """Exceção base da aplicação"""
     def __init__(self, message: str = "An error occurred"):
         self.message = message
         super().__init__(self.message)
 
 
-class UserNotFoundException(BaseAppException):
+class UserNotFoundException(_BaseAppException):
      """Exceção para usuário não encontrado"""
      def __init__(self, user_id: int):
           message = f"User with ID {user_id} not found."
           super().__init__(message)
 
 
-class UserAlreadyExistsException(BaseAppException):
+class UserAlreadyExistsException(_BaseAppException):
      """Exceção para usuário já existente"""
      def __init__(self, username: str):
           message = f"User with username '{username}' already exists."
           super().__init__(message)
 
-class InvalidCredentialsException(BaseAppException):
+class InvalidCredentialsException(_BaseAppException):
      """Exceção para credenciais inválidas"""
      def __init__(self):
           message = "Invalid username or password."

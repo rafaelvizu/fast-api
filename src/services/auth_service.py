@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from src.models.user import User
 from src.core.security import verify_password, get_password_hash, create_access_token
-from src.exceptions.user import UserAlreadyExistsException, UserNotFoundException, InvalidCredentialsException
-from src.schemas.user import UserCreate, UserLogin, UserRead
+from exceptions.user_exceptions import UserAlreadyExistsException, UserNotFoundException, InvalidCredentialsException
+from schemas.user_schema import UserCreate, UserLogin, UserRead
 
 def authenticate_user(db: Session, user: UserLogin) -> User:
      db_user = db.query(User).filter(User.email == user.email).first()
