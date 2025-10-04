@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 
 from src.db.session import get_db
 from src.services import auth_service
-from schemas.user_schema import UserCreate, UserRead, UserLogin, Token
+from src.schemas.user_schema import UserCreate, UserRead, UserLogin, Token
 from src.schemas import Message
-from exceptions.user_exceptions import UserAlreadyExistsException, UserNotFoundException, InvalidCredentialsException
+from src.exceptions.user_exceptions import UserAlreadyExistsException, UserNotFoundException, InvalidCredentialsException
 from fastapi.responses import JSONResponse
 
 router = APIRouter(
