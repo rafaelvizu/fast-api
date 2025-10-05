@@ -15,4 +15,5 @@ class User(Base):
      is_active = _Column(_VARCHAR(100), default=True)
 
      products = relationship("Product", back_populates="user", cascade="all, delete-orphan")
+     sales = relationship("Sale", back_populates="user", cascade="all, delete-orphan")
 

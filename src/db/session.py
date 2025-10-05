@@ -5,6 +5,8 @@ from src.core.settings import settings as _settings
 from src.db.base import Base as _Base
 from src.models.user import User as _User
 from src.models.product import Product as _Product
+from src.models.sale import Sale as _Sale
+from src.models.sale_item import SaleItem as _SaleItem
 
 
 
