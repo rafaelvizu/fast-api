@@ -19,7 +19,7 @@ router = APIRouter(
      response_model=UserRead,
      name="Register",
      responses={
-          400: {"description": UserAlreadyExistsException.__doc__},
+          400: {"description": "Bad Request - User already exists"},
           500: {"description": "Internal server error"},
      }
 )
